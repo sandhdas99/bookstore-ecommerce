@@ -117,3 +117,345 @@ function smoothScrollTo(elementId) {
 // Additional functions will be added in subsequent phases
 
 // Made with Bob
+
+/* ===================================
+   PHASE 11: ENHANCED JAVASCRIPT FUNCTIONALITY
+   =================================== */
+
+/**
+ * Modal Component System
+ */
+class Modal {
+    constructor(modalId) {
+        this.modal = document.getElementById(modalId);
+        this.closeBtn = this.modal?.querySelector('.modal-close');
+        this.overlay = this.modal?.querySelector('.modal-overlay');
+        
+        if (this.modal) {
+            this.init();
+        }
+    }
+    
+    init() {
+        // Close on X button
+        if (this.closeBtn) {
+            this.closeBtn.addEventListener('click', () => this.close());
+        }
+        
+        // Close on overlay click
+        if (this.overlay) {
+            this.overlay.addEventListener('click', () => this.close());
+        }
+        
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+                this.close();
+            }
+        });
+    }
+    
+    open() {
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus trap
+        const focusableElements = this.modal.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableElements.length > 0) {
+            focusableElements[0].focus();
+        }
+    }
+    
+    close() {
+        this.modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+/**
+ * Enhanced Search Functionality
+ */
+function initGlobalSearch() {
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
+    
+    if (searchInput) {
+        // Real-time search with debounce
+        let searchTimeout;
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                performSearch(e.target.value);
+            }, 300);
+        });
+        
+        // Search on button click
+        if (searchBtn) {
+            searchBtn.addEventListener('click', () => {
+                performSearch(searchInput.value);
+            });
+        }
+        
+        // Search on Enter key
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch(searchInput.value);
+            }
+        });
+    }
+}
+
+/**
+ * Perform search and redirect to catalog
+ */
+function performSearch(query) {
+    if (query.trim()) {
+        // Redirect to catalog with search query
+        window.location.href = `catalog.html?search=${encodeURIComponent(query)}`;
+    }
+}
+
+/**
+ * Keyboard Navigation Enhancement
+ */
+function initKeyboardNavigation() {
+    // Tab navigation for cards
+    const cards = document.querySelectorAll('.book-card');
+    cards.forEach(card => {
+        card.setAttribute('tabindex', '0');
+        
+        card.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const link = card.querySelector('a');
+                if (link) link.click();
+            }
+        });
+    });
+    
+    // Arrow key navigation for forms
+    const formInputs = document.querySelectorAll('input, select, textarea');
+    formInputs.forEach((input, index) => {
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' && index < formInputs.length - 1) {
+                e.preventDefault();
+                formInputs[index + 1].focus();
+            } else if (e.key === 'ArrowUp' && index > 0) {
+                e.preventDefault();
+                formInputs[index - 1].focus();
+            }
+        });
+    });
+}
+
+/**
+ * Image Lazy Loading
+ */
+function initLazyLoading() {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src || img.src;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
+    }
+}
+
+/**
+ * Form Validation Enhancement
+ */
+function enhanceFormValidation() {
+    const forms = document.querySelectorAll('form');
+    
+    forms.forEach(form => {
+        const inputs = form.querySelectorAll('input, select, textarea');
+        
+        inputs.forEach(input => {
+            // Real-time validation
+            input.addEventListener('blur', () => validateInput(input));
+            input.addEventListener('input', () => {
+                if (input.classList.contains('error')) {
+                    validateInput(input);
+                }
+            });
+        });
+    });
+}
+
+/**
+ * Validate individual input
+ */
+function validateInput(input) {
+    const value = input.value.trim();
+    const type = input.type;
+    const required = input.hasAttribute('required');
+    let isValid = true;
+    let errorMessage = '';
+    
+    // Required check
+    if (required && !value) {
+        isValid = false;
+        errorMessage = 'This field is required';
+    }
+    // Email validation
+    else if (type === 'email' && value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+            isValid = false;
+            errorMessage = 'Please enter a valid email';
+        }
+    }
+    // Phone validation
+    else if (input.name === 'phone' && value) {
+        const phoneRegex = /^\d{10}$/;
+        if (!phoneRegex.test(value.replace(/\D/g, ''))) {
+            isValid = false;
+            errorMessage = 'Please enter a valid 10-digit phone number';
+        }
+    }
+    
+    // Update UI
+    const errorElement = input.parentElement.querySelector('.error-message');
+    if (isValid) {
+        input.classList.remove('error');
+        if (errorElement) errorElement.textContent = '';
+    } else {
+        input.classList.add('error');
+        if (errorElement) errorElement.textContent = errorMessage;
+    }
+    
+    return isValid;
+}
+
+/**
+ * Scroll to Top Button
+ */
+function initScrollToTop() {
+    // Create button if it doesn't exist
+    let scrollBtn = document.getElementById('scroll-to-top');
+    if (!scrollBtn) {
+        scrollBtn = document.createElement('button');
+        scrollBtn.id = 'scroll-to-top';
+        scrollBtn.innerHTML = '↑';
+        scrollBtn.setAttribute('aria-label', 'Scroll to top');
+        scrollBtn.style.cssText = `
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        `;
+        document.body.appendChild(scrollBtn);
+    }
+    
+    // Show/hide on scroll
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollBtn.style.opacity = '1';
+            scrollBtn.style.visibility = 'visible';
+        } else {
+            scrollBtn.style.opacity = '0';
+            scrollBtn.style.visibility = 'hidden';
+        }
+    });
+    
+    // Scroll to top on click
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+/**
+ * Local Storage Manager
+ */
+const StorageManager = {
+    set(key, value) {
+        try {
+            localStorage.setItem(key, JSON.stringify(value));
+            return true;
+        } catch (e) {
+            console.error('Storage error:', e);
+            return false;
+        }
+    },
+    
+    get(key) {
+        try {
+            const item = localStorage.getItem(key);
+            return item ? JSON.parse(item) : null;
+        } catch (e) {
+            console.error('Storage error:', e);
+            return null;
+        }
+    },
+    
+    remove(key) {
+        try {
+            localStorage.removeItem(key);
+            return true;
+        } catch (e) {
+            console.error('Storage error:', e);
+            return false;
+        }
+    },
+    
+    clear() {
+        try {
+            localStorage.clear();
+            return true;
+        } catch (e) {
+            console.error('Storage error:', e);
+            return false;
+        }
+    }
+};
+
+/**
+ * Performance Monitoring
+ */
+function initPerformanceMonitoring() {
+    if ('performance' in window) {
+        window.addEventListener('load', () => {
+            const perfData = performance.timing;
+            const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+            console.log(`Page load time: ${pageLoadTime}ms`);
+        });
+    }
+}
+
+/**
+ * Initialize all enhanced features
+ */
+function initEnhancedFeatures() {
+    initGlobalSearch();
+    initKeyboardNavigation();
+    initLazyLoading();
+    enhanceFormValidation();
+    initScrollToTop();
+    initPerformanceMonitoring();
+}
+
+// Initialize enhanced features when DOM is loaded
+document.addEventListener('DOMContentLoaded', initEnhancedFeatures);
