@@ -459,3 +459,202 @@ function initEnhancedFeatures() {
 
 // Initialize enhanced features when DOM is loaded
 document.addEventListener('DOMContentLoaded', initEnhancedFeatures);
+
+
+/* ===================================
+   SMOOTH SCROLLING FOR NAVIGATION
+   =================================== */
+
+/**
+ * Initialize smooth scrolling for hash links
+ */
+function initSmoothScrolling() {
+    // Handle all navigation links with hash
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Skip if it's just "#"
+            if (href === '#') return;
+            
+            e.preventDefault();
+            
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                // Close mobile menu if open
+                const navMenu = document.querySelector('.nav-menu');
+                const menuToggle = document.querySelector('.menu-toggle');
+                if (navMenu && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+                
+                // Smooth scroll to target
+                const headerOffset = 80; // Account for fixed header
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Update URL without jumping
+                history.pushState(null, null, href);
+            }
+        });
+    });
+    
+    // Handle direct hash navigation on page load
+    if (window.location.hash) {
+        setTimeout(() => {
+            const targetId = window.location.hash.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }, 100);
+    }
+}
+
+/* ===================================
+   CONTACT FORM HANDLING
+   =================================== */
+
+/**
+ * Initialize contact form
+ */
+function initContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactFormSubmit);
+    }
+}
+
+/**
+ * Handle contact form submission
+ */
+function handleContactFormSubmit(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    // Validate all fields
+    let isValid = true;
+    const inputs = form.querySelectorAll('input, textarea');
+    
+    inputs.forEach(input => {
+        if (!validateInput(input)) {
+            isValid = false;
+        }
+    });
+    
+    if (!isValid) {
+        showToast('Please fix the errors in the form', 'error');
+        return;
+    }
+    
+    // Get form values
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        subject: formData.get('subject'),
+        message: formData.get('message')
+    };
+    
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    // Simulate form submission (replace with actual API call)
+    setTimeout(() => {
+        // Success
+        showToast('Thank you! Your message has been sent successfully.', 'success');
+        form.reset();
+        
+        // Reset button
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        
+        // Store in localStorage for demo purposes
+        const messages = StorageManager.get('contact_messages') || [];
+        messages.push({
+            ...data,
+            timestamp: new Date().toISOString()
+        });
+        StorageManager.set('contact_messages', messages);
+        
+        console.log('Contact form submitted:', data);
+    }, 1500);
+}
+
+/* ===================================
+   ACTIVE NAVIGATION HIGHLIGHTING
+   =================================== */
+
+/**
+ * Highlight active section in navigation
+ */
+function initActiveNavigation() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    
+    if (sections.length === 0 || navLinks.length === 0) return;
+    
+    function highlightNavigation() {
+        const scrollPosition = window.scrollY + 100;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+    
+    // Throttle scroll event
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) {
+            window.cancelAnimationFrame(scrollTimeout);
+        }
+        scrollTimeout = window.requestAnimationFrame(highlightNavigation);
+    });
+    
+    // Initial check
+    highlightNavigation();
+}
+
+/* ===================================
+   INITIALIZE NEW FEATURES
+   =================================== */
+
+// Add to existing DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', function() {
+    initSmoothScrolling();
+    initContactForm();
+    initActiveNavigation();
+});
