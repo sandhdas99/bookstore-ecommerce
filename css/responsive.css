@@ -1,0 +1,269 @@
+/* ===================================
+   BookStore - Responsive Styles
+   =================================== */
+
+/* ===================================
+   MOBILE STYLES (Base - up to 767px)
+   =================================== */
+
+/* Mobile Navigation */
+@media (max-width: 767px) {
+    .nav-container {
+        flex-wrap: wrap;
+        position: relative;
+    }
+    
+    .logo {
+        order: 1;
+        font-size: 1.25rem;
+    }
+    
+    .menu-toggle {
+        display: flex;
+        order: 3;
+    }
+    
+    .search-bar {
+        order: 2;
+        flex: 1;
+        max-width: none;
+        margin-left: auto;
+        margin-right: var(--spacing-md);
+    }
+    
+    .cart-icon {
+        order: 4;
+    }
+    
+    .nav-menu {
+        order: 5;
+        flex-direction: column;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+        background-color: white;
+        margin-top: var(--spacing-md);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .nav-menu.active {
+        max-height: 400px;
+        opacity: 1;
+        padding: var(--spacing-md);
+    }
+    
+    .nav-menu li {
+        width: 100%;
+    }
+    
+    .nav-link {
+        display: block;
+        width: 100%;
+        padding: var(--spacing-md);
+        text-align: left;
+    }
+    
+    .nav-link.active::after {
+        display: none;
+    }
+}
+
+/* Mobile First Approach - Base styles are for mobile */
+
+/* Tablet: 768px and up */
+@media (min-width: 768px) {
+    
+    /* Navigation - Tablet */
+    .nav-container {
+        gap: var(--spacing-md);
+    }
+    
+    .search-bar {
+        max-width: 300px;
+    }
+    
+    .nav-menu {
+        gap: var(--spacing-md);
+    }
+    /* Container */
+    .container {
+        padding: 0 var(--spacing-lg);
+    }
+    
+    /* Typography */
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 2rem; }
+    
+    /* Grid layouts will be added in subsequent phases */
+}
+
+/* Desktop: 1024px and up */
+    
+    /* Navigation - Desktop */
+    .search-bar {
+        max-width: 400px;
+    }
+    
+    .nav-menu {
+        gap: var(--spacing-lg);
+    }
+@media (min-width: 1024px) {
+    /* Container */
+    .container {
+        padding: 0 var(--spacing-xl);
+    }
+    
+    /* Typography */
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 3rem; }
+    
+    /* Grid layouts will be added in subsequent phases */
+}
+
+/* Large Desktop: 1440px and up */
+@media (min-width: 1440px) {
+    /* Container */
+    .container {
+        max-width: 1400px;
+    }
+    
+    /* Typography */
+    h1 { font-size: 4rem; }
+    
+    /* Grid layouts will be added in subsequent phases */
+}
+
+/* Responsive utilities */
+@media (max-width: 767px) {
+    .hide-mobile {
+        display: none !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .show-mobile {
+        display: none !important;
+    }
+}
+
+/* ===================================
+   HOMEPAGE RESPONSIVE STYLES
+   =================================== */
+
+/* Mobile (Base styles already in style.css) */
+@media (max-width: 767px) {
+    /* Hero Section - Mobile */
+    .hero {
+        min-height: 400px;
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+    }
+    
+    /* Featured Books - Mobile */
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .books-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .book-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* Tablet: 768px and up */
+@media (min-width: 768px) {
+    /* Hero Section - Tablet */
+    .hero {
+        min-height: 450px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.15rem;
+    }
+    
+    /* Featured Books - Tablet */
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+}
+
+/* Desktop: 1024px and up */
+@media (min-width: 1024px) {
+    /* Hero Section - Desktop */
+    .hero {
+        min-height: 500px;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+    }
+    
+    /* Featured Books - Desktop */
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .books-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-xl);
+    }
+}
+
+/* Large Desktop: 1440px and up */
+@media (min-width: 1440px) {
+    /* Hero Section - Large Desktop */
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    /* Featured Books - Large Desktop */
+    .books-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Specific responsive styles will be added in Phase 8 */
+
+/* Made with Bob */

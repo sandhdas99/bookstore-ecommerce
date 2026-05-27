@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover your next favorite book at our online bookstore. Browse thousands of titles across all genres.">
+    <meta name="keywords" content="books, bookstore, online books, buy books, fiction, non-fiction">
+    <title>BookStore - Your Online Book Destination</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header id="header" class="header">
+        <nav class="navbar">
+            <div class="container nav-container">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">BookStore</span>
+                </a>
+                
+                <!-- Navigation Menu -->
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="catalog.html" class="nav-link">Catalog</a></li>
+                    <li><a href="#categories" class="nav-link">Categories</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search books..." aria-label="Search books">
+                    <button class="search-btn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Cart Icon -->
+                <a href="cart.html" class="cart-icon" aria-label="Shopping cart">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-badge">0</span>
+                </a>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">Discover Your Next Great Read</h1>
+                <p class="hero-subtitle">Explore thousands of books across all genres. From bestsellers to hidden gems, find your perfect book today.</p>
+                <div class="hero-buttons">
+                    <a href="catalog.html" class="btn btn-primary btn-lg">Browse Catalog</a>
+                    <a href="#featured-books" class="btn btn-secondary btn-lg">Featured Books</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Books Section -->
+    <section id="featured-books" class="featured-books">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Featured Books</h2>
+                <p class="section-subtitle">Handpicked selections from our collection</p>
+            </div>
+            
+            <div class="books-grid" id="featured-books-grid">
+                <!-- Book Card 1 -->
+                <div class="book-card hover-lift">
+                    <div class="book-image-wrapper">
+                        <img src="https://covers.openlibrary.org/b/id/8235826-L.jpg" alt="The Great Gatsby" class="book-image">
+                        <div class="book-badge">Bestseller</div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">The Great Gatsby</h3>
+                        <p class="book-author">F. Scott Fitzgerald</p>
+                        <div class="book-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-count">(4.5)</span>
+                        </div>
+                        <div class="book-price-row">
+                            <div class="book-price">
+                                <span class="price-current">₹299</span>
+                                <span class="price-original">₹499</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm add-to-cart" data-book-id="1">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Card 2 -->
+                <div class="book-card hover-lift">
+                    <div class="book-image-wrapper">
+                        <img src="https://covers.openlibrary.org/b/id/7884916-L.jpg" alt="To Kill a Mockingbird" class="book-image">
+                        <div class="book-badge badge-new">New</div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">To Kill a Mockingbird</h3>
+                        <p class="book-author">Harper Lee</p>
+                        <div class="book-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-count">(4.8)</span>
+                        </div>
+                        <div class="book-price-row">
+                            <div class="book-price">
+                                <span class="price-current">₹349</span>
+                                <span class="price-original">₹549</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm add-to-cart" data-book-id="2">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Card 3 -->
+                <div class="book-card hover-lift">
+                    <div class="book-image-wrapper">
+                        <img src="https://covers.openlibrary.org/b/id/8231346-L.jpg" alt="1984" class="book-image">
+                        <div class="book-badge badge-sale">Sale</div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">1984</h3>
+                        <p class="book-author">George Orwell</p>
+                        <div class="book-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-count">(4.6)</span>
+                        </div>
+                        <div class="book-price-row">
+                            <div class="book-price">
+                                <span class="price-current">₹279</span>
+                                <span class="price-original">₹449</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm add-to-cart" data-book-id="3">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Card 4 -->
+                <div class="book-card hover-lift">
+                    <div class="book-image-wrapper">
+                        <img src="https://covers.openlibrary.org/b/id/8236672-L.jpg" alt="Pride and Prejudice" class="book-image">
+                        <div class="book-badge">Classic</div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">Pride and Prejudice</h3>
+                        <p class="book-author">Jane Austen</p>
+                        <div class="book-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-count">(4.7)</span>
+                        </div>
+                        <div class="book-price-row">
+                            <div class="book-price">
+                                <span class="price-current">₹329</span>
+                                <span class="price-original">₹499</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm add-to-cart" data-book-id="4">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Card 5 -->
+                <div class="book-card hover-lift">
+                    <div class="book-image-wrapper">
+                        <img src="https://covers.openlibrary.org/b/id/8235329-L.jpg" alt="The Catcher in the Rye" class="book-image">
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">The Catcher in the Rye</h3>
+                        <p class="book-author">J.D. Salinger</p>
+                        <div class="book-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-count">(4.3)</span>
+                        </div>
+                        <div class="book-price-row">
+                            <div class="book-price">
+                                <span class="price-current">₹299</span>
+                                <span class="price-original">₹449</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm add-to-cart" data-book-id="5">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Card 6 -->
+                <div class="book-card hover-lift">
+                    <div class="book-image-wrapper">
+                        <img src="https://covers.openlibrary.org/b/id/8235347-L.jpg" alt="The Hobbit" class="book-image">
+                        <div class="book-badge badge-new">New</div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">The Hobbit</h3>
+                        <p class="book-author">J.R.R. Tolkien</p>
+                        <div class="book-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-count">(4.9)</span>
+                        </div>
+                        <div class="book-price-row">
+                            <div class="book-price">
+                                <span class="price-current">₹399</span>
+                                <span class="price-original">₹599</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm add-to-cart" data-book-id="6">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-2">
+                <a href="catalog.html" class="btn btn-secondary btn-lg">View All Books</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <!-- Footer content -->
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
