@@ -62,21 +62,166 @@
     </header>
 
     <!-- Book Detail Page -->
-    <main id="book-detail-page">
-        <!-- Book Detail Content -->
-        <section id="book-detail">
-            <!-- Book image and info will be added in Phase 5 -->
-        </section>
+    <main id="book-detail-page" class="book-detail-page">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <a href="catalog.html">Catalog</a>
+                <span>/</span>
+                <span id="breadcrumb-title">Book Details</span>
+            </nav>
 
-        <!-- Tabs Section -->
-        <section id="book-tabs">
-            <!-- Description, Reviews, Author tabs will be added in Phase 5 -->
-        </section>
+            <!-- Book Detail Content -->
+            <section id="book-detail" class="book-detail-section">
+                <div class="book-detail-grid">
+                    <!-- Book Image -->
+                    <div class="book-image-container">
+                        <div class="book-image-zoom">
+                            <img id="book-detail-image" src="" alt="" class="book-detail-img">
+                        </div>
+                        <div class="book-badges-container" id="book-badges">
+                            <!-- Badges will be added dynamically -->
+                        </div>
+                    </div>
 
-        <!-- Related Books -->
-        <section id="related-books">
-            <!-- Related books will be added in Phase 5 -->
-        </section>
+                    <!-- Book Information -->
+                    <div class="book-detail-info">
+                        <h1 id="book-title" class="book-detail-title">Loading...</h1>
+                        <p id="book-author" class="book-detail-author">By <span></span></p>
+                        
+                        <div class="book-rating-detail">
+                            <div class="stars-large" id="book-stars"></div>
+                            <span id="book-rating-text" class="rating-text"></span>
+                            <span id="book-reviews-count" class="reviews-count"></span>
+                        </div>
+
+                        <div class="book-price-detail">
+                            <span id="book-price-current" class="price-detail-current">₹0</span>
+                            <span id="book-price-original" class="price-detail-original"></span>
+                            <span id="book-discount" class="discount-badge"></span>
+                        </div>
+
+                        <div class="book-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">Category:</span>
+                                <span id="book-category" class="meta-value"></span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Publisher:</span>
+                                <span id="book-publisher" class="meta-value"></span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">ISBN:</span>
+                                <span id="book-isbn" class="meta-value"></span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Pages:</span>
+                                <span id="book-pages" class="meta-value"></span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Published:</span>
+                                <span id="book-publish-date" class="meta-value"></span>
+                            </div>
+                        </div>
+
+                        <div class="book-stock" id="book-stock">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>In Stock</span>
+                        </div>
+
+                        <div class="quantity-selector">
+                            <label for="quantity">Quantity:</label>
+                            <div class="quantity-controls">
+                                <button class="qty-btn" id="qty-decrease" aria-label="Decrease quantity">-</button>
+                                <input type="number" id="quantity" class="qty-input" value="1" min="1" max="10">
+                                <button class="qty-btn" id="qty-increase" aria-label="Increase quantity">+</button>
+                            </div>
+                        </div>
+
+                        <div class="book-actions">
+                            <button id="add-to-cart-btn" class="btn btn-primary btn-lg">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                Add to Cart
+                            </button>
+                            <button class="btn btn-secondary btn-lg">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                                Wishlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabs Section -->
+            <section id="book-tabs" class="book-tabs-section">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="description">Description</button>
+                    <button class="tab-btn" data-tab="reviews">Reviews</button>
+                    <button class="tab-btn" data-tab="author">Author Info</button>
+                </div>
+
+                <div class="tabs-content">
+                    <!-- Description Tab -->
+                    <div id="description-tab" class="tab-panel active">
+                        <h3>About This Book</h3>
+                        <p id="book-description" class="book-description-text"></p>
+                    </div>
+
+                    <!-- Reviews Tab -->
+                    <div id="reviews-tab" class="tab-panel">
+                        <h3>Customer Reviews</h3>
+                        <div class="reviews-summary">
+                            <div class="reviews-average">
+                                <div class="average-rating" id="average-rating">0.0</div>
+                                <div class="stars-large" id="reviews-stars"></div>
+                                <p id="total-reviews">0 reviews</p>
+                            </div>
+                            <div class="reviews-breakdown" id="reviews-breakdown">
+                                <!-- Rating breakdown will be added dynamically -->
+                            </div>
+                        </div>
+                        <div class="reviews-list" id="reviews-list">
+                            <!-- Reviews will be added dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Author Tab -->
+                    <div id="author-tab" class="tab-panel">
+                        <h3>About the Author</h3>
+                        <div class="author-info">
+                            <div class="author-avatar">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <div class="author-details">
+                                <h4 id="author-name"></h4>
+                                <p id="author-bio">Information about the author will be displayed here.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Books -->
+            <section id="related-books" class="related-books-section">
+                <h2 class="section-title">You May Also Like</h2>
+                <div class="books-grid" id="related-books-grid">
+                    <!-- Related books will be added dynamically -->
+                </div>
+            </section>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -86,6 +231,7 @@
 
     <script src="js/data.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/book-detail.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

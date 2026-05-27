@@ -62,16 +62,148 @@
     </header>
 
     <!-- Catalog Page -->
-    <main id="catalog-page">
-        <!-- Filter Sidebar -->
-        <aside id="filter-sidebar">
-            <!-- Filters will be added in Phase 4 -->
-        </aside>
+    <main id="catalog-page" class="catalog-page">
+        <div class="container">
+            <div class="catalog-header">
+                <h1 class="page-title">Book Catalog</h1>
+                <p class="page-subtitle">Explore our collection of books</p>
+            </div>
 
-        <!-- Book Grid -->
-        <section id="book-grid">
-            <!-- Book cards will be added in Phase 4 -->
-        </section>
+            <div class="catalog-layout">
+                <!-- Filter Sidebar -->
+                <aside id="filter-sidebar" class="filter-sidebar">
+                    <div class="filter-header">
+                        <h2 class="filter-title">Filters</h2>
+                        <button class="btn-clear-filters" id="clear-filters">Clear All</button>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-group-title">Category</h3>
+                        <div class="filter-options" id="category-filters">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="category" value="all" checked>
+                                <span>All Categories</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="category" value="fiction">
+                                <span>Fiction</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="category" value="non-fiction">
+                                <span>Non-Fiction</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="category" value="mystery">
+                                <span>Mystery</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="category" value="romance">
+                                <span>Romance</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="category" value="science-fiction">
+                                <span>Science Fiction</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="category" value="biography">
+                                <span>Biography</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="category" value="self-help">
+                                <span>Self-Help</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="category" value="business">
+                                <span>Business</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Range Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-group-title">Price Range</h3>
+                        <div class="price-range-container">
+                            <div class="price-inputs">
+                                <input type="number" id="min-price" class="price-input" placeholder="Min" min="0" value="0">
+                                <span class="price-separator">-</span>
+                                <input type="number" id="max-price" class="price-input" placeholder="Max" min="0" value="1000">
+                            </div>
+                            <input type="range" id="price-slider" class="price-slider" min="0" max="1000" value="1000" step="50">
+                            <div class="price-labels">
+                                <span>₹0</span>
+                                <span>₹1000+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rating Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-group-title">Minimum Rating</h3>
+                        <div class="filter-options" id="rating-filters">
+                            <label class="filter-radio">
+                                <input type="radio" name="rating" value="0" checked>
+                                <span>All Ratings</span>
+                            </label>
+                            <label class="filter-radio">
+                                <input type="radio" name="rating" value="4">
+                                <span>★★★★☆ 4.0 & up</span>
+                            </label>
+                            <label class="filter-radio">
+                                <input type="radio" name="rating" value="4.5">
+                                <span>★★★★★ 4.5 & up</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Availability Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-group-title">Availability</h3>
+                        <div class="filter-options">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="availability" value="in-stock" checked>
+                                <span>In Stock</span>
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content Area -->
+                <div class="catalog-main">
+                    <!-- Toolbar -->
+                    <div class="catalog-toolbar">
+                        <div class="results-info">
+                            <span id="book-count">0</span> books found
+                        </div>
+                        <div class="sort-controls">
+                            <label for="sort-select">Sort by:</label>
+                            <select id="sort-select" class="sort-select">
+                                <option value="featured">Featured</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Highest Rated</option>
+                                <option value="newest">Newest First</option>
+                                <option value="title">Title: A-Z</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Book Grid -->
+                    <div class="books-grid" id="catalog-books-grid">
+                        <!-- Books will be dynamically loaded here -->
+                        <div class="loading-spinner">
+                            <div class="spinner"></div>
+                            <p>Loading books...</p>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination" id="pagination">
+                        <!-- Pagination will be added dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->

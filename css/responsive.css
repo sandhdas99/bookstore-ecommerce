@@ -267,3 +267,185 @@
 /* Specific responsive styles will be added in Phase 8 */
 
 /* Made with Bob */
+
+/* ===================================
+   CATALOG PAGE RESPONSIVE STYLES
+   =================================== */
+
+@media (max-width: 767px) {
+    .catalog-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-sidebar {
+        position: static;
+        max-height: none;
+    }
+    
+    .catalog-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .sort-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .sort-select {
+        flex: 1;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .catalog-layout {
+        grid-template-columns: 250px 1fr;
+    }
+}
+
+/* ===================================
+   BOOK DETAIL PAGE RESPONSIVE STYLES
+   =================================== */
+
+@media (max-width: 767px) {
+    .book-detail-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .book-detail-title {
+        font-size: 1.5rem;
+    }
+    
+    .book-meta {
+        grid-template-columns: 1fr;
+    }
+    
+    .book-actions {
+        flex-direction: column;
+    }
+    
+    .book-actions .btn {
+        width: 100%;
+    }
+    
+    .tabs-header {
+        flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+        flex: 1;
+        min-width: 100px;
+    }
+    
+    .reviews-summary {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .author-info {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .book-detail-grid {
+        grid-template-columns: 1fr 1.2fr;
+    }
+}
+
+/* ===================================
+   CART PAGE RESPONSIVE STYLES
+   =================================== */
+
+@media (max-width: 767px) {
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .cart-summary {
+        position: static;
+        order: -1;
+        margin-bottom: var(--spacing-xl);
+    }
+    
+    .cart-item {
+        grid-template-columns: 100px 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .cart-item-image {
+        width: 100px;
+        height: 140px;
+    }
+    
+    .cart-item-actions {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .cart-layout {
+        grid-template-columns: 1fr 350px;
+    }
+}
+
+/* ===================================
+   CHECKOUT PAGE RESPONSIVE STYLES
+   =================================== */
+
+@media (max-width: 767px) {
+    .checkout-progress {
+        padding: var(--spacing-md);
+    }
+    
+    .progress-step {
+        font-size: 0.85rem;
+    }
+    
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .progress-line {
+        width: 40px;
+        margin: 0 var(--spacing-xs);
+    }
+    
+    .step-label {
+        font-size: 0.75rem;
+    }
+    
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .order-summary {
+        position: static;
+        order: -1;
+        margin-bottom: var(--spacing-xl);
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .checkout-layout {
+        grid-template-columns: 1fr 350px;
+    }
+}
